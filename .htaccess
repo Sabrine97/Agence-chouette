@@ -1,13 +1,15 @@
-ExpiresActive On
-ExpiresByType image/gif A2592000
-ExpiresByType image/jpeg A2592000
-ExpiresByType image/jpg A2592000
-ExpiresByType image/png A2592000
-ExpiresByType image/x-icon A2592000
-ExpiresByType text/css A86400
-ExpiresByType text/javascript A86400
-ExpiresByType application/x-shockwave-flash A2592000
-#
-<FilesMatch "\.(gif¦jpe?g¦png¦ico¦css¦js¦swf)$">
-Header set Cache-Control "public"
+<FilesMatch "\.(js|css|gif|jpg|jpeg|png|ico)$">
+Header unset Cookie
+Header unset Set-Cookie
+
+Header set Cache-Control "max-age=31536000"
+
+Header set vary  "Accept-Encoding"
+Header append vary "User-Agent"
+Header append Cache-Control "public" 
+
+Header append Connection "Keep-Alive"
+Header append Keep-Alive "timeout=5, max=100"
+
+FileETag None
 </FilesMatch>
